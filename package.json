@@ -1,0 +1,34 @@
+{
+  "name": "git-history-cli",
+  "version": "1.0.0",
+  "description": "search history from any git repository",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "config": "^1.26.1",
+    "handlebars": "^4.0.8",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^3.4.1"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "ghc": "bin/git-hisotry-cli.js"
+  },
+  "scripts": {
+    "start": "npm publish .",
+    "test": " node bin/git-hisotry-cli.js -t js -n q "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rikan/git-history-cli.git"
+  },
+  "author": "LiQian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rikan/git-history-cli/issues"
+  },
+  "homepage": "https://github.com/rikan/git-history-cli#readme"
+}
