@@ -23,7 +23,7 @@ describe('lib', function () {
             }), true);
             assert(commands.showHistory('https://github.com/tarruda/node-git-remote.git', {
                 branch: 'master',
-                number: 1
+                number: 13
             }), true);
             assert(commands.showHistory('https://github.com/tarruda/node-git-remote.git', {
                 branch: 'master',
