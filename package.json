@@ -4,10 +4,7 @@
   "description": "search history from any git repository",
   "main": "index.js",
   "dependencies": {
-    "commander": "^2.9.0",
-    "config": "^1.26.1",
-    "handlebars": "^4.0.8",
-    "request": "^2.81.0"
+    "commander": "^2.9.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
