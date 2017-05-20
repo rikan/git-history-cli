@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-let constants = require('../lib/constants');
 let commands = require('../lib/command').commands;
 
 //check is git installed
@@ -22,7 +21,10 @@ let loader = require('../lib/repo-map');
 program
     .version(version)
     .command('list', 'list ghc cached repositories', {isDefault: true})
-    .action(function () {
+    .action(function (command) {
+        if (command !== 'list') {
+            return;
+        }
         let ghcMap = loader.loadGhcRepo();
         console.log();
         for (let k in ghcMap) {
@@ -30,29 +32,33 @@ program
                 console.log(k + ' ' + ghcMap[k]);
                 console.log();
             }
-
         }
     })
-    .command('history [url] [branch] [search]', 'retrieve remote git history')
-    .action(function (command, url, branch, search) {
-        if (typeof branch !== typeof '') {
-            branch = '';
+    .option('-t, --text [text]', 'Only show commits with a commit message containing the string')
+    .option('-n, --number [number]', 'Show only the last n commits')
+    .option('-b, --branch [branch]', 'Show only the branch commits')
+    .option('-p, --pretty', 'Show pretty commits')
+    .option('-s, --since [since]', 'Limit the commits to those made before the specified date.')
+    .option('-u, --until [until]', 'Limit the commits to those made after the specified date.')
+    .command('history [url]', 'retrieve remote git history')
+    .action(function (command, url) {
+        //history https://github.com/tarruda/node-git-remote.git -s '2015-11-12' -p
+        if (command !== 'history') {
+            return;
         }
-
-        if (typeof search !== typeof '') {
-            search = '';
-        }
-
         if (!url) {
             console.log('need specify the repo url');
             return;
         }
-        let out = commands.showHistory(url, branch, search);
+        let out = commands.showHistory(url, {
+            number: program.number,
+            pretty: program.pretty,
+            text: program.text,
+            branch: program.branch,
+            until: program.until,
+            since: program.since,
+        });
         console.log(out);
-    })
-    .command('clear', 'clear ghc cached repositories.')
-    .action(function () {
-
     })
     .parse(process.argv);
 
