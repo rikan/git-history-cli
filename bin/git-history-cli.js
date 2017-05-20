@@ -1,50 +1,58 @@
 #!/usr/bin/env node
 
-let exec = require('child_process').exec;
 let constants = require('../lib/constants');
+let commands = require('../lib/command').commands;
 
+//check is git installed
+if (!commands.isGitInstalled()) {
+    console.error('please make sure git is installed and try again.');
+    process.exit(1);
+}
+
+//check git folder is init
+if (!commands.isGitInited()) {
+    commands.initGit();
+}
+
+
+let program = require('commander');
+let version = require("../package.json").version;
 let loader = require('../lib/repo-map');
+//cli command
+program
+    .version(version)
+    .command('list', 'list ghc cached repositories', {isDefault: true})
+    .action(function () {
+        let ghcMap = loader.loadGhcRepo();
+        console.log();
+        for (let k in ghcMap) {
+            if (ghcMap.hasOwnProperty(k)) {
+                console.log(k + ' ' + ghcMap[k]);
+                console.log();
+            }
 
-// let cmd, prefix = 'ghc-';
-// cmd = 'git version';
-// exec(constants.COMMAND_GIT_VERSION, function (error, stdout, stderr) {
-//     if (error !== null) {
-//         console.error('Hi, please make sure git is installed and try again.');
-//         process.exit(1);
-//     }
-// });
-//
-// let _makeRepoMap = function () {
-//     var map = {};
-//     exec(constants.COMMAND_GIT_REMOTES, function (error, stdout, stderr) {
-//         console.log()
-//     });
-// };
-//
-// let program = require('commander');
-// let version = require("../package.json").version;
-// program
-//     .version(version)
-//     .command('list', 'list ghc cached repositories', {isDefault: true})
-//     .action(function () {
-//         cmd = 'git remote -v';
-//         exec(cmd, function (error, stdout, stderr) {
-//             console.log(stdout)
-//         });
-//     })
-//     .command('history [remote] [short-name]', 'list cached installed', {isDefault: true})
-//     .action(function () {
-//         cmd = 'git remote -v';
-//         exec(cmd, function (error, stdout, stderr) {
-//             console.log(stdout)
-//         });
-//     })
-//     .command('clear', 'clear ghc cached repositories.', {isDefault: true})
-//     .action(function () {
-//         cmd = 'git remote -v';
-//         exec(cmd, function (error, stdout, stderr) {
-//             console.log(stdout)
-//         });
-//     })
-//     .parse(process.argv);
+        }
+    })
+    .command('history [url] [branch] [search]', 'retrieve remote git history')
+    .action(function (command, url, branch, search) {
+        if (typeof branch !== typeof '') {
+            branch = '';
+        }
+
+        if (typeof search !== typeof '') {
+            search = '';
+        }
+
+        if (!url) {
+            console.log('need specify the repo url');
+            return;
+        }
+        let out = commands.showHistory(url, branch, search);
+        console.log(out);
+    })
+    .command('clear', 'clear ghc cached repositories.')
+    .action(function () {
+
+    })
+    .parse(process.argv);
 
