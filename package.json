@@ -13,11 +13,11 @@
   },
   "preferGlobal": true,
   "bin": {
-    "ghc": "bin/git-hisotry-cli.js"
+    "ghc": "bin/git-history-cli.js"
   },
   "scripts": {
     "start": "npm publish .",
-    "test": " node bin/git-hisotry-cli.js -t js -n q "
+    "test": " node bin/git-history-cli.js history https://github.com/rikan/git-history-cli.git -p "
   },
   "repository": {
     "type": "git",

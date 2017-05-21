@@ -5,8 +5,7 @@ program
     .usage('[entry]')
     .parse(process.argv);
 
-
-let ghcMap = loader.loadGhcRepo();
+let ghcMap = loader.load();
 console.log();
 for (let k in ghcMap) {
     if (ghcMap.hasOwnProperty(k)) {
