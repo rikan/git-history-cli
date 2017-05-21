@@ -8,7 +8,9 @@ search history from any git repository
 使用
 --------
 git clone https://github.com/rikan/git-history-cli.git & cd git-history-cli
+
 npm install -g
+
 ghc history https://github.com/marmelab/gremlins.js.git -p -u '2016-12-12' -s '2015-11-11' -t "Merge pull"
 
 执行
