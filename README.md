@@ -14,6 +14,7 @@ in git-history-cli folder, run 'npm install -g'
 --------
 ghc history git-repo
 
+参数：
 -t, --text [text]  Only show commits with a commit message containing the string
 -n, --number [number] Show only the last n commits
 -b, --branch [branch] Show only the branch commits
