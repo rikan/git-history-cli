@@ -5,14 +5,15 @@ search history from any git repository
 --------
 通过git fetch 获得远程仓库的信息， 然后通过git log来获取commit log。
 
-本地安装
+使用
 --------
-in git-history-cli folder, run 'npm install -g'
-
+git clone https://github.com/rikan/git-history-cli.git & cd git-history-cli
+npm install -g
+ghc history https://github.com/marmelab/gremlins.js.git -p -u '2016-12-12' -s '2015-11-11' -t "Merge pull"
 
 执行
 --------
-ghc history git-repo
+ghc history
 
 参数：
 
@@ -27,5 +28,3 @@ ghc history git-repo
 -s, --since [since] Limit the commits to those made before the specified date
 
 -u, --until [until] Limit the commits to those made after the specified date
-
--v, --verbose Show detail log

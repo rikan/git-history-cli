@@ -3,12 +3,12 @@ let commands = require('../lib/command').commands;
 let program = require('commander');
 program
     .usage('[entry]')
-    .option('-t, --text [text]', 'Only show commits with a commit message containing the string')
-    .option('-n, --number [number]', 'Show only the last n commits')
-    .option('-b, --branch [branch]', 'Show only the branch commits')
+    .option('-t, --text <text>', 'Only show commits with a commit message containing the string')
+    .option('-n, --number <number>', 'Show only the last n commits')
+    .option('-b, --branch <branch>', 'Show only the branch commits')
     .option('-p, --pretty', 'Show pretty commits')
-    .option('-s, --since [since]', 'Limit the commits to those made before the specified date')
-    .option('-u, --until [until]', 'Limit the commits to those made after the specified date')
+    .option('-s, --since <since>', 'Limit the commits to those made before the specified date')
+    .option('-u, --until <until>', 'Limit the commits to those made after the specified date')
     .parse(process.argv);
 
 

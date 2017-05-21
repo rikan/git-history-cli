@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 let commands = require('../lib/command').commands;
+let program = require('commander');
 
 //check is git installed
 if (!commands.isGitInstalled()) {
@@ -13,14 +14,10 @@ if (!commands.isGitInited()) {
     commands.initGit();
 }
 
-let program = require('commander');
 let version = require("../package.json").version;
 //cli command
 program
     .version(version)
-    .option('-v, --verbose', 'Show detail log')
     .command('list', 'list ghc cached repositories', {isDefault: true})
-    .command('history [url]', 'retrieve remote git history')
+    .command('history <url>', 'retrieve remote git history')
     .parse(process.argv);
-
-exports.verbose = program.verbose;
