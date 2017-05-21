@@ -16,10 +16,15 @@ ghc history git-repo
 
 参数：
 -t, --text [text]  Only show commits with a commit message containing the string
+
 -n, --number [number] Show only the last n commits
+
 -b, --branch [branch] Show only the branch commits
+
 -p, --pretty Show pretty commits
+
 -s, --since [since] Limit the commits to those made before the specified date
+
 -u, --until [until] Limit the commits to those made after the specified date
 
 -v, --verbose Show detail log
